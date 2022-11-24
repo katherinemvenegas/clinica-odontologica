@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Paciente {
@@ -12,13 +13,21 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String apellido, nombre, email;
+    private String apellido;
+    @Column
+    private String nombre;
+
+    @Column
+    private String email;
     @Column
     private Long dni;
     @DateTimeFormat
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @Column
     private LocalDate fechaDeIngreso;
+
+    @OneToMany
+    private List<Turno> turnos;
 
     public Paciente() {
     }

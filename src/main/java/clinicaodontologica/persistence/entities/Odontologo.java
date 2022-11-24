@@ -1,6 +1,7 @@
 package clinicaodontologica.persistence.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Odontologo {
@@ -8,7 +9,16 @@ public class Odontologo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String matricula, nombre, apellido;
+    private String matricula;
+
+    @Column
+    private String nombre;
+
+    @Column
+    private String apellido;
+
+    @OneToMany
+    private List<Turno> turnos;
 
     public Odontologo() {
     }
