@@ -26,6 +26,10 @@ public class Paciente {
     @Column
     private LocalDate fechaDeIngreso;
 
+    @OneToOne
+    @JoinColumn(name = "domicilio_id")
+    private Domicilio domicilio;
+
     @OneToMany
     private List<Turno> turnos;
 
@@ -87,5 +91,21 @@ public class Paciente {
 
     public void setFechaDeIngreso(LocalDate fechaDeIngreso) {
         this.fechaDeIngreso = fechaDeIngreso;
+    }
+
+    public Domicilio getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public List<Turno> getTurnos() {
+        return turnos;
+    }
+
+    public void setTurnos(List<Turno> turnos) {
+        this.turnos = turnos;
     }
 }
