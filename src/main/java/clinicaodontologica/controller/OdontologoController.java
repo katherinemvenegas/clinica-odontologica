@@ -1,7 +1,6 @@
 package clinicaodontologica.controller;
 
 import clinicaodontologica.model.dto.OdontologoDTO;
-import clinicaodontologica.persistence.entities.Odontologo;
 import clinicaodontologica.service.OdontologoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +17,13 @@ public class OdontologoController {
     }
 
     @GetMapping("buscarPorId")
-    public Odontologo buscarPorId(@RequestParam Long id){
+    public OdontologoDTO buscarPorId(@RequestParam Long id){
         return odontologoService.getDentist(id);
     }
 
-    @GetMapping("listarTodos")
+    @GetMapping()
 
-    public List<Odontologo> buscarTodos(){
+    public List<OdontologoDTO> buscarTodos(){
         return odontologoService.getAllDentist();
     }
 
@@ -35,8 +34,8 @@ public class OdontologoController {
     }
 
     @PutMapping("editarOdontologo")
-    public String editarOdontologo(@RequestParam Long id, @RequestBody Odontologo odontologo){
-        odontologoService.modifyDentist(odontologo, id);
+    public String editarOdontologo(@RequestParam Long id, @RequestBody OdontologoDTO odontologoDTO){
+        odontologoService.modifyDentist(odontologoDTO, id);
         return "Se editó correctamente";
     }
 }
