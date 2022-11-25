@@ -27,15 +27,21 @@ public class OdontologoController {
         return odontologoService.getAllDentist();
     }
 
-    @PostMapping("nuevoOdontologo")
+    @PostMapping("nuevo")
     public String nuevoOdontologo(@RequestBody OdontologoDTO odontologoDTO){
         odontologoService.addNewDentist(odontologoDTO);
         return "Se registró correctamente";
     }
 
-    @PutMapping("editarOdontologo")
+    @PutMapping("editar")
     public String editarOdontologo(@RequestParam Long id, @RequestBody OdontologoDTO odontologoDTO){
         odontologoService.modifyDentist(odontologoDTO, id);
         return "Se editó correctamente";
+    }
+
+    @DeleteMapping("eliminar")
+    public String eliminarOdontologo(@RequestParam Long id){
+        odontologoService.deleteDentist(id);
+        return "Se elimino correctamente el registro: " + id;
     }
 }
