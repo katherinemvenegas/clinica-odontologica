@@ -2,6 +2,8 @@ package clinicaodontologica.controller;
 
 import clinicaodontologica.model.dto.OdontologoDTO;
 import clinicaodontologica.service.OdontologoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,31 +19,31 @@ public class OdontologoController {
     }
 
     @GetMapping("{id}")
-    public OdontologoDTO getById(@PathVariable Long id){
-        return odontologoService.getDentist(id);
+    public ResponseEntity<OdontologoDTO> getById(@PathVariable Long id){
+        return new ResponseEntity<>(odontologoService.getDentist(id), HttpStatus.OK);
     }
 
     @GetMapping()
 
-    public List<OdontologoDTO> getAll(){
-        return odontologoService.getAllDentist();
+    public ResponseEntity<List<OdontologoDTO>> getAll(){
+        return new ResponseEntity<>(odontologoService.getAllDentist(), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public String newDentist(@RequestBody OdontologoDTO odontologoDTO){
+    public ResponseEntity<String> newDentist(@RequestBody OdontologoDTO odontologoDTO){
         odontologoService.addNewDentist(odontologoDTO);
-        return "Se registró correctamente";
+        return new ResponseEntity<>("Se registró correctamente", HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public String modifyDentist(@PathVariable Long id, @RequestBody OdontologoDTO odontologoDTO){
+    public ResponseEntity<String> modifyDentist(@PathVariable Long id, @RequestBody OdontologoDTO odontologoDTO){
         odontologoService.modifyDentist(odontologoDTO, id);
-        return "Se editó correctamente";
+        return new ResponseEntity<>("Se editó correctamente", HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public String deleteDentist(@PathVariable Long id){
+    public ResponseEntity<String> deleteDentist(@PathVariable Long id){
         odontologoService.deleteDentist(id);
-        return "Se elimino correctamente el registro: " + id;
+        return new ResponseEntity<>("Se elimino correctamente el registro: " + id, HttpStatus.OK);
     }
 }
