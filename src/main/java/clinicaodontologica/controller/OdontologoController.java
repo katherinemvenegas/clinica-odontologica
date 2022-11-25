@@ -31,19 +31,16 @@ public class OdontologoController {
 
     @PostMapping("")
     public ResponseEntity<String> newDentist(@RequestBody OdontologoDTO odontologoDTO){
-        odontologoService.addNewDentist(odontologoDTO);
-        return new ResponseEntity<>("Se registró correctamente", HttpStatus.CREATED);
+        return new ResponseEntity<>(odontologoService.addNewDentist(odontologoDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<String> modifyDentist(@PathVariable Long id, @RequestBody OdontologoDTO odontologoDTO){
-        odontologoService.modifyDentist(odontologoDTO, id);
-        return new ResponseEntity<>("Se editó correctamente", HttpStatus.OK);
+        return new ResponseEntity<>(odontologoService.modifyDentist(odontologoDTO, id), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteDentist(@PathVariable Long id){
-        odontologoService.deleteDentist(id);
-        return new ResponseEntity<>("Se elimino correctamente el registro: " + id, HttpStatus.OK);
+        return new ResponseEntity<>(odontologoService.deleteDentist(id), HttpStatus.OK);
     }
 }
