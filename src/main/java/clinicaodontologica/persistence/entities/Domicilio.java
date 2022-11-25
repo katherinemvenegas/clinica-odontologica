@@ -16,19 +16,15 @@ public class Domicilio {
     @Column
     private String localidad, provincia;
 
-    @OneToOne(mappedBy =  "domicilio")
-    private Paciente paciente;
-
     public Domicilio() {
     }
 
-    public Domicilio(Long id, String calle, int numero, String localidad, String provincia, Paciente paciente) {
+    public Domicilio(Long id, String calle, int numero, String localidad, String provincia) {
         this.id = id;
         this.calle = calle;
         this.numero = numero;
         this.localidad = localidad;
         this.provincia = provincia;
-        this.paciente = paciente;
     }
 
     public Long getId() {
@@ -71,11 +67,14 @@ public class Domicilio {
         this.provincia = provincia;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    @Override
+    public String toString() {
+        return "Domicilio{" +
+                "id=" + id +
+                ", calle='" + calle + '\'' +
+                ", numero=" + numero +
+                ", localidad='" + localidad + '\'' +
+                ", provincia='" + provincia + '\'' +
+                '}';
     }
 }

@@ -26,7 +26,7 @@ public class Paciente {
     @Column
     private LocalDate fechaDeIngreso;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
 
@@ -36,13 +36,14 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(Long id, String apellido, String nombre, String email, Long dni, LocalDate fechaDeIngreso) {
+    public Paciente(Long id, String apellido, String nombre, String email, Long dni, LocalDate fechaDeIngreso, Domicilio domicilio) {
         this.id = id;
         this.apellido = apellido;
         this.nombre = nombre;
         this.email = email;
         this.dni = dni;
         this.fechaDeIngreso = fechaDeIngreso;
+        this.domicilio = domicilio;
     }
 
     public Long getId() {
@@ -107,5 +108,19 @@ public class Paciente {
 
     public void setTurnos(List<Turno> turnos) {
         this.turnos = turnos;
+    }
+
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "id=" + id +
+                ", apellido='" + apellido + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                ", dni=" + dni +
+                ", fechaDeIngreso=" + fechaDeIngreso +
+                ", domicilio=" + domicilio +
+                ", turnos=" + turnos +
+                '}';
     }
 }
