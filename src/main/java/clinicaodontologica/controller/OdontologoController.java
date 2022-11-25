@@ -16,31 +16,31 @@ public class OdontologoController {
         this.odontologoService = odontologoService;
     }
 
-    @GetMapping("buscarPorId")
-    public OdontologoDTO buscarPorId(@RequestParam Long id){
+    @GetMapping("{id}")
+    public OdontologoDTO getById(@PathVariable Long id){
         return odontologoService.getDentist(id);
     }
 
     @GetMapping()
 
-    public List<OdontologoDTO> buscarTodos(){
+    public List<OdontologoDTO> getAll(){
         return odontologoService.getAllDentist();
     }
 
-    @PostMapping("nuevo")
-    public String nuevoOdontologo(@RequestBody OdontologoDTO odontologoDTO){
+    @PostMapping("")
+    public String newDentist(@RequestBody OdontologoDTO odontologoDTO){
         odontologoService.addNewDentist(odontologoDTO);
         return "Se registró correctamente";
     }
 
-    @PutMapping("editar")
-    public String editarOdontologo(@RequestParam Long id, @RequestBody OdontologoDTO odontologoDTO){
+    @PutMapping("{id}")
+    public String modifyDentist(@PathVariable Long id, @RequestBody OdontologoDTO odontologoDTO){
         odontologoService.modifyDentist(odontologoDTO, id);
         return "Se editó correctamente";
     }
 
-    @DeleteMapping("eliminar")
-    public String eliminarOdontologo(@RequestParam Long id){
+    @DeleteMapping("{id}")
+    public String deleteDentist(@PathVariable Long id){
         odontologoService.deleteDentist(id);
         return "Se elimino correctamente el registro: " + id;
     }
