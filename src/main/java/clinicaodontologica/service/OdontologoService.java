@@ -43,7 +43,7 @@ public class OdontologoService {
 
     public List<OdontologoDTO> getAllDentist(){
         List<OdontologoDTO> odontologoDTOList = iOdontologoRepository.findAll().stream().map(
-                odontologo -> modelMapper.map(iOdontologoRepository.findAll(), OdontologoDTO.class))
+                odontologo -> modelMapper.map(odontologo, OdontologoDTO.class))
                 .collect(Collectors.toList());
         return odontologoDTOList;
     }
