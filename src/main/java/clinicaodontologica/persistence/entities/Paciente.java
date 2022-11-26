@@ -5,7 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 public class Paciente {
@@ -30,8 +31,8 @@ public class Paciente {
     @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
 
-    @OneToMany
-    private List<Turno> turnos;
+    @OneToMany(mappedBy = "paciente", orphanRemoval = true)
+    private Set<Turno> turnos = new TreeSet<>();
 
     public Paciente() {
     }
@@ -102,11 +103,11 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    public List<Turno> getTurnos() {
+    public Set<Turno> getTurnos() {
         return turnos;
     }
 
-    public void setTurnos(List<Turno> turnos) {
+    public void setTurnos(Set<Turno> turnos) {
         this.turnos = turnos;
     }
 

@@ -6,16 +6,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+
 @Entity
 public class Turno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "odontologo_id")
     private Odontologo odontologo;
     @DateTimeFormat
@@ -49,13 +50,14 @@ public class Turno {
         this.paciente = paciente;
     }
 
+    public void setOdontologo(Odontologo odontologo) {
+        this.odontologo = odontologo;
+    }
+
     public Odontologo getOdontologo() {
         return odontologo;
     }
 
-    public void setOdontologo(Odontologo odontologo) {
-        this.odontologo = odontologo;
-    }
 
     public LocalDate getFecha() {
         return fecha;

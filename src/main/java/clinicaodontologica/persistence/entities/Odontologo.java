@@ -1,7 +1,8 @@
 package clinicaodontologica.persistence.entities;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 public class Odontologo {
@@ -17,16 +18,10 @@ public class Odontologo {
     @Column
     private String apellido;
 
-    @OneToMany
-    private List<Turno> turnos;
+    @OneToMany(mappedBy = "odontologo", orphanRemoval = true)
+    private Set<Turno> turnos = new TreeSet<>();
 
     public Odontologo() {
-    }
-
-    public Odontologo(String matricula, String nombre, String apellido) {
-        this.matricula = matricula;
-        this.nombre = nombre;
-        this.apellido = apellido;
     }
 
     public Odontologo(Long id, String matricula, String nombre, String apellido) {
@@ -66,6 +61,14 @@ public class Odontologo {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public Set<Turno> getTurnos() {
+        return turnos;
+    }
+
+    public void setTurnos(Set<Turno> turnos) {
+        this.turnos = turnos;
     }
 
     @Override
