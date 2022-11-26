@@ -7,26 +7,35 @@ import java.time.LocalDate;
 
 public class TurnoDTO {
 
-    private PacienteDTO paciente;
-    private OdontologoDTO odontologo;
+    private Long idPaciente, idOdontologo;
+
     @DateTimeFormat
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate fecha;
 
-    public PacienteDTO getPaciente() {
-        return paciente;
+    public TurnoDTO() {
     }
 
-    public void setPaciente(PacienteDTO paciente) {
-        this.paciente = paciente;
+    public TurnoDTO(Long idPaciente, Long idOdontologo, LocalDate fecha) {
+        this.idPaciente = idPaciente;
+        this.idOdontologo = idOdontologo;
+        this.fecha = fecha;
     }
 
-    public OdontologoDTO getOdontologo() {
-        return odontologo;
+    public Long getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setOdontologo(OdontologoDTO odontologo) {
-        this.odontologo = odontologo;
+    public void setIdPaciente(Long idPaciente) {
+        this.idPaciente = idPaciente;
+    }
+
+    public Long getIdOdontologo() {
+        return idOdontologo;
+    }
+
+    public void setIdOdontologo(Long idOdontologo) {
+        this.idOdontologo = idOdontologo;
     }
 
     public LocalDate getFecha() {
@@ -37,20 +46,11 @@ public class TurnoDTO {
         this.fecha = fecha;
     }
 
-    public TurnoDTO() {
-    }
-
-    public TurnoDTO(PacienteDTO paciente, OdontologoDTO odontologo, LocalDate fecha) {
-        this.paciente = paciente;
-        this.odontologo = odontologo;
-        this.fecha = fecha;
-    }
-
     @Override
     public String toString() {
         return "TurnoDTO{" +
-                "paciente=" + paciente +
-                ", odontologo=" + odontologo +
+                "id paciente=" + idPaciente +
+                ", id odontologo=" + idOdontologo +
                 ", fecha=" + fecha +
                 '}';
     }
