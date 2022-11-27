@@ -15,7 +15,7 @@ public class PacienteDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate fechaDeIngreso;
 
-    private DomicilioDTO domicilioDTO;
+    private DomicilioDTO domicilio;
 
     public PacienteDTO() {
     }
@@ -26,7 +26,7 @@ public class PacienteDTO {
         this.email = email;
         this.dni = dni;
         this.fechaDeIngreso = fechaDeIngreso;
-        this.domicilioDTO = domicilioDTO;
+        this.domicilio = domicilioDTO;
     }
     public String getApellido() {
         return apellido;
@@ -68,12 +68,12 @@ public class PacienteDTO {
         this.fechaDeIngreso = fechaDeIngreso;
     }
 
-    public DomicilioDTO getDomicilioDTO() {
-        return domicilioDTO;
+    public DomicilioDTO getDomicilio() {
+        return domicilio;
     }
 
-    public void setDomicilioDTO(DomicilioDTO domicilio) {
-        this.domicilioDTO = domicilio;
+    public void setDomicilio(DomicilioDTO domicilio) {
+        this.domicilio = domicilio;
     }
 
     @Override
@@ -84,7 +84,7 @@ public class PacienteDTO {
                 ", email='" + email + '\'' +
                 ", dni=" + dni +
                 ", fechaDeIngreso=" + fechaDeIngreso +
-                ", domicilio=" + domicilioDTO +
+                ", domicilio=" + domicilio +
                 '}';
     }
 }

@@ -1,6 +1,5 @@
 package clinicaodontologica.service;
 
-import clinicaodontologica.model.dto.DomicilioDTO;
 import clinicaodontologica.model.dto.PacienteDTO;
 import clinicaodontologica.persistence.entities.Paciente;
 import clinicaodontologica.persistence.repository.IPacienteRepository;
@@ -37,15 +36,13 @@ public class PacienteService {
 
     public PacienteDTO getPatient(Long id){
        PacienteDTO pacienteDTO = modelMapper.map( iPacienteRepository.findById(id).get(), PacienteDTO.class);
-       pacienteDTO.setDomicilioDTO(modelMapper.map(iPacienteRepository.findById(id).get().getDomicilio(), DomicilioDTO.class));
-        return pacienteDTO;
+       return pacienteDTO;
     }
 
     public List<PacienteDTO> getAllPatients(){
         List<PacienteDTO> pacienteDTOList = iPacienteRepository.findAll().
                 stream().map(paciente -> {
                     PacienteDTO pacienteDTO = modelMapper.map(paciente, PacienteDTO.class);
-                    pacienteDTO.setDomicilioDTO(modelMapper.map(paciente.getDomicilio(), DomicilioDTO.class));
                     return pacienteDTO;
                 })
                 .collect(Collectors.toList());
