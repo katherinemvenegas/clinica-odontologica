@@ -1,10 +1,5 @@
 package clinicaodontologica.model.dto;
 
-import clinicaodontologica.persistence.entities.Paciente;
-
-import javax.persistence.Column;
-import javax.persistence.OneToOne;
-
 public class DomicilioDTO {
 
     private String calle;
