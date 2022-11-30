@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PacienteService {
+public class PacienteService implements IPacienteService {
 
     private IPacienteRepository iPacienteRepository;
 
@@ -20,26 +20,30 @@ public class PacienteService {
         this.iPacienteRepository = iPacienteRepository;
     }
 
-    public String addNewPatient(PacienteDTO pacienteDTO){
+    @Override
+    public String addNewPatient(PacienteDTO pacienteDTO) {
 
         Paciente paciente = modelMapper.map(pacienteDTO, Paciente.class);
         iPacienteRepository.save(paciente);
         return "El paciente " + paciente.getApellido() + " se creo con exito";
     }
 
-    public String modifyPatient(PacienteDTO pacienteDTO, Long id){
+    @Override
+    public String modifyPatient(PacienteDTO pacienteDTO, Long id) {
         Paciente paciente = modelMapper.map(pacienteDTO, Paciente.class);
         paciente.setId(id);
         iPacienteRepository.save(paciente);
         return "El paciente " + paciente.getApellido() + " se modifico con exito";
     }
 
-    public PacienteDTO getPatient(Long id){
-       PacienteDTO pacienteDTO = modelMapper.map( iPacienteRepository.findById(id).get(), PacienteDTO.class);
-       return pacienteDTO;
+    @Override
+    public PacienteDTO getPatient(Long id) {
+        PacienteDTO pacienteDTO = modelMapper.map(iPacienteRepository.findById(id).get(), PacienteDTO.class);
+        return pacienteDTO;
     }
 
-    public List<PacienteDTO> getAllPatients(){
+    @Override
+    public List<PacienteDTO> getAllPatients() {
         List<PacienteDTO> pacienteDTOList = iPacienteRepository.findAll().
                 stream().map(paciente -> {
                     PacienteDTO pacienteDTO = modelMapper.map(paciente, PacienteDTO.class);
@@ -49,7 +53,8 @@ public class PacienteService {
         return pacienteDTOList;
     }
 
-    public String deletePatient(Long id){
+    @Override
+    public String deletePatient(Long id) {
         iPacienteRepository.deleteById(id);
         return "El paciente fue eliminado con exito";
     }

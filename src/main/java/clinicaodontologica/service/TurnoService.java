@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TurnoService {
+public class TurnoService implements ITurnoService {
 
     private ITurnoRepository iTurnoRepository;
     private IOdontologoRepository iOdontologoRepository;
@@ -28,6 +28,7 @@ public class TurnoService {
         this.iPacienteRepository = iPacienteRepository;
     }
 
+    @Override
     public String addNewTurn(TurnoDTO turnoDTO) {
         verifyExistDentist(turnoDTO.getIdOdontologo());
         verifyExistPatient(turnoDTO.getIdPaciente());
@@ -42,6 +43,7 @@ public class TurnoService {
         return "El turno con fecha " + turno.getFecha() + " se creo con exito";
     }
 
+    @Override
     public String modifyTurn(TurnoDTO turnoDTO, Long id) {
         verifyExistDentist(turnoDTO.getIdOdontologo());
         verifyExistPatient(turnoDTO.getIdPaciente());
@@ -56,11 +58,13 @@ public class TurnoService {
         return "El turno se modifico con exito";
     }
 
+    @Override
     public TurnoDTO getTurn(Long id) {
         TurnoDTO turnoDTO = modelMapper.map(iTurnoRepository.findById(id).get(), TurnoDTO.class);
         return turnoDTO;
     }
 
+    @Override
     public List<TurnoDTO> getAllTurns() {
         List<TurnoDTO> turnoDTOList = iTurnoRepository.findAll().stream().map(turno -> {
             TurnoDTO turnoDTO = modelMapper.map(turno, TurnoDTO.class);
@@ -69,6 +73,7 @@ public class TurnoService {
         return turnoDTOList;
     }
 
+    @Override
     public String deleteTurn(Long id) {
         iTurnoRepository.deleteById(id);
         return "El turno fue eliminado con exito";
