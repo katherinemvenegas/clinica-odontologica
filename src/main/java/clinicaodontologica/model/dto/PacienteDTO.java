@@ -3,9 +3,10 @@ package clinicaodontologica.model.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class PacienteDTO {
+public class PacienteDTO implements Serializable {
 
     private String apellido, nombre, email;
 

@@ -1,6 +1,8 @@
 package clinicaodontologica.model.dto;
 
-public class DomicilioDTO {
+import java.io.Serializable;
+
+public class DomicilioDTO implements Serializable {
 
     private String calle;
 

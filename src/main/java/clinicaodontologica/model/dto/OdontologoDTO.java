@@ -1,6 +1,8 @@
 package clinicaodontologica.model.dto;
 
-public class OdontologoDTO {
+import java.io.Serializable;
+
+public class OdontologoDTO implements Serializable {
     private String matricula, nombre, apellido;
 
     public String getMatricula() {

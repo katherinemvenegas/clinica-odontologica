@@ -3,9 +3,10 @@ package clinicaodontologica.model.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class TurnoDTO {
+public class TurnoDTO implements Serializable {
 
     private Long idPaciente, idOdontologo;
 
