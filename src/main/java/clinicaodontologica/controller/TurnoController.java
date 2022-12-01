@@ -30,7 +30,6 @@ public class TurnoController {
 
     @PostMapping("")
     public ResponseEntity<String> newTurn(@RequestBody TurnoDTO turnoDTO){
-        System.out.println(turnoDTO);
         return new ResponseEntity<>(turnoService.addNewTurn(turnoDTO), HttpStatus.CREATED);
     }
 
