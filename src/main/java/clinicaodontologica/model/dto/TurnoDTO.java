@@ -9,6 +9,8 @@ import java.time.LocalDate;
 public class TurnoDTO implements Serializable {
 
     private Long idPaciente, idOdontologo;
+    private String pacienteApellido;
+    private String odontologoApellido;
 
     @DateTimeFormat
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -45,6 +47,22 @@ public class TurnoDTO implements Serializable {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public String getPacienteApellido() {
+        return pacienteApellido;
+    }
+
+    public void setPacienteApellido(String pacienteApellido) {
+        this.pacienteApellido = pacienteApellido;
+    }
+
+    public String getOdontologoApellido() {
+        return odontologoApellido;
+    }
+
+    public void setOdontologoApellido(String odontologoApellido) {
+        this.odontologoApellido = odontologoApellido;
     }
 
     @Override

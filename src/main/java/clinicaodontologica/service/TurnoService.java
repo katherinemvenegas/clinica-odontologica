@@ -61,6 +61,8 @@ public class TurnoService implements ITurnoService {
     @Override
     public TurnoDTO getTurn(Long id) {
         TurnoDTO turnoDTO = modelMapper.map(iTurnoRepository.findById(id).get(), TurnoDTO.class);
+        turnoDTO.setPacienteApellido(iTurnoRepository.findById(id).get().getPaciente().getApellido());
+        turnoDTO.setOdontologoApellido(iTurnoRepository.findById(id).get().getOdontologo().getApellido());
         return turnoDTO;
     }
 
@@ -68,6 +70,9 @@ public class TurnoService implements ITurnoService {
     public List<TurnoDTO> getAllTurns() {
         List<TurnoDTO> turnoDTOList = iTurnoRepository.findAll().stream().map(turno -> {
             TurnoDTO turnoDTO = modelMapper.map(turno, TurnoDTO.class);
+            turnoDTO.setPacienteApellido(turno.getPaciente().getApellido());
+            turnoDTO.setOdontologoApellido(turno.getOdontologo().getApellido());
+
             return turnoDTO;
         }).collect(Collectors.toList());
         return turnoDTOList;
