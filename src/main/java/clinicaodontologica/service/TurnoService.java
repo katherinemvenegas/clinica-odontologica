@@ -1,5 +1,6 @@
 package clinicaodontologica.service;
 
+import clinicaodontologica.exceptions.ResourceNotFound;
 import clinicaodontologica.model.dto.TurnoDTO;
 import clinicaodontologica.persistence.entities.Turno;
 import clinicaodontologica.persistence.repository.IOdontologoRepository;
@@ -45,25 +46,33 @@ public class TurnoService implements ITurnoService {
 
     @Override
     public String modifyTurn(TurnoDTO turnoDTO, Long id) {
-        verifyExistDentist(turnoDTO.getIdOdontologo());
-        verifyExistPatient(turnoDTO.getIdPaciente());
-        dateAvailable(turnoDTO.getFecha());
-        Turno turno = new Turno();
-        turno.setId(id);
-        turno.setFecha(turnoDTO.getFecha());
-        turno.setOdontologo(iOdontologoRepository.findById(turnoDTO.getIdOdontologo()).orElseThrow());
-        turno.setPaciente(iPacienteRepository.findById(turnoDTO.getIdPaciente()).orElseThrow());
-        iTurnoRepository.save(turno);
+        if (!iTurnoRepository.existsById(id)) {
+            throw new ResourceNotFound("No encontramos el turno que desea modificar");
+        } else {
+            verifyExistDentist(turnoDTO.getIdOdontologo());
+            verifyExistPatient(turnoDTO.getIdPaciente());
+            dateAvailable(turnoDTO.getFecha());
+            Turno turno = new Turno();
+            turno.setId(id);
+            turno.setFecha(turnoDTO.getFecha());
+            turno.setOdontologo(iOdontologoRepository.findById(turnoDTO.getIdOdontologo()).orElseThrow());
+            turno.setPaciente(iPacienteRepository.findById(turnoDTO.getIdPaciente()).orElseThrow());
+            iTurnoRepository.save(turno);
 
-        return "El turno se modifico con exito";
+            return "El turno se modifico con exito";
+        }
     }
 
     @Override
     public TurnoDTO getTurn(Long id) {
-        TurnoDTO turnoDTO = modelMapper.map(iTurnoRepository.findById(id).get(), TurnoDTO.class);
-        turnoDTO.setPacienteApellido(iTurnoRepository.findById(id).get().getPaciente().getApellido());
-        turnoDTO.setOdontologoApellido(iTurnoRepository.findById(id).get().getOdontologo().getApellido());
-        return turnoDTO;
+        if (!iTurnoRepository.existsById(id)) {
+            throw new ResourceNotFound("No encontramos el turno solicitado");
+        } else {
+            TurnoDTO turnoDTO = modelMapper.map(iTurnoRepository.findById(id).get(), TurnoDTO.class);
+            turnoDTO.setPacienteApellido(iTurnoRepository.findById(id).get().getPaciente().getApellido());
+            turnoDTO.setOdontologoApellido(iTurnoRepository.findById(id).get().getOdontologo().getApellido());
+            return turnoDTO;
+        }
     }
 
     @Override
@@ -80,8 +89,12 @@ public class TurnoService implements ITurnoService {
 
     @Override
     public String deleteTurn(Long id) {
-        iTurnoRepository.deleteById(id);
-        return "El turno fue eliminado con exito";
+        if (!iTurnoRepository.existsById(id)) {
+            throw new ResourceNotFound("No encontramos el turno que desea eliminar");
+        } else {
+            iTurnoRepository.deleteById(id);
+            return "El turno fue eliminado con exito";
+        }
     }
 
     //methods support
