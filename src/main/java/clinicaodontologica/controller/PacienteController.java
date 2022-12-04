@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,13 +30,13 @@ public class PacienteController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> newPatient(@RequestBody PacienteDTO pacienteDTO){
+    public ResponseEntity<String> newPatient(@RequestBody @Valid PacienteDTO pacienteDTO){
 
         return new ResponseEntity<>(pacienteService.addNewPatient(pacienteDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<String> modifyPatient(@PathVariable Long id, @RequestBody PacienteDTO pacienteDTO){
+    public ResponseEntity<String> modifyPatient(@PathVariable Long id, @RequestBody @Valid PacienteDTO pacienteDTO){
 
         return new ResponseEntity<>(pacienteService.modifyPatient(pacienteDTO, id), HttpStatus.OK);
     }
