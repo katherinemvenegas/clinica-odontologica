@@ -1,8 +1,8 @@
 package clinicaodontologica.service;
 
 
+import clinicaodontologica.exceptions.ResourceNotFound;
 import clinicaodontologica.model.dto.OdontologoDTO;
-import clinicaodontologica.persistence.entities.Domicilio;
 import clinicaodontologica.persistence.entities.Odontologo;
 import clinicaodontologica.persistence.repository.IOdontologoRepository;
 import org.modelmapper.ModelMapper;
@@ -21,6 +21,7 @@ public class OdontologoService implements IOdontologoService {
     public OdontologoService(IOdontologoRepository iOdontologoRepository) {
         this.iOdontologoRepository = iOdontologoRepository;
     }
+
     @Override
     public String addNewDentist(OdontologoDTO odontologoDTO) {
 
@@ -28,19 +29,27 @@ public class OdontologoService implements IOdontologoService {
         iOdontologoRepository.save(odontologo);
         return "El odontologo " + odontologo.getApellido() + " se creo con exito";
     }
+
     @Override
     public String modifyDentist(OdontologoDTO odontologoDTO, Long id) {
+        if (!iOdontologoRepository.existsById(id)) {
+            throw new ResourceNotFound("No encontramos al odontologo que desea modificar");
+        } else {
         Odontologo odontologo = modelMapper.map(odontologoDTO, Odontologo.class);
         odontologo.setId(id);
         iOdontologoRepository.save(odontologo);
         return "El odontologo " + odontologo.getApellido() + " se modifico con exito";
+        }
     }
 
     @Override
     public OdontologoDTO getDentist(Long id) {
-
-        OdontologoDTO odontologoDTO = modelMapper.map((iOdontologoRepository.findById(id).get()), OdontologoDTO.class);
-        return odontologoDTO;
+        if (!iOdontologoRepository.existsById(id)) {
+            throw new ResourceNotFound("No encontramos al odontologo solicitado");
+        } else {
+            OdontologoDTO odontologoDTO = modelMapper.map((iOdontologoRepository.findById(id).get()), OdontologoDTO.class);
+            return odontologoDTO;
+        }
     }
 
     @Override
@@ -53,7 +62,11 @@ public class OdontologoService implements IOdontologoService {
 
     @Override
     public String deleteDentist(Long id) {
-        iOdontologoRepository.deleteById(id);
-        return "El odontologo fue eliminado con exito";
+        if (!iOdontologoRepository.existsById(id)) {
+            throw new ResourceNotFound("No encontramos al odontologo que desea eliminar");
+        } else {
+            iOdontologoRepository.deleteById(id);
+            return "El odontologo fue eliminado con exito";
+        }
     }
 }
