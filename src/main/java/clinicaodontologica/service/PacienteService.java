@@ -1,5 +1,6 @@
 package clinicaodontologica.service;
 
+import clinicaodontologica.exceptions.ResourceNotFound;
 import clinicaodontologica.model.dto.PacienteDTO;
 import clinicaodontologica.persistence.entities.Paciente;
 import clinicaodontologica.persistence.repository.IPacienteRepository;
@@ -30,16 +31,24 @@ public class PacienteService implements IPacienteService {
 
     @Override
     public String modifyPatient(PacienteDTO pacienteDTO, Long id) {
-        Paciente paciente = modelMapper.map(pacienteDTO, Paciente.class);
-        paciente.setId(id);
-        iPacienteRepository.save(paciente);
-        return "El paciente " + paciente.getApellido() + " se modifico con exito";
+        if (!iPacienteRepository.existsById(id)) {
+            throw new ResourceNotFound("No encontramos al paciente que desea modificar");
+        } else {
+            Paciente paciente = modelMapper.map(pacienteDTO, Paciente.class);
+            paciente.setId(id);
+            iPacienteRepository.save(paciente);
+            return "El paciente " + paciente.getApellido() + " se modifico con exito";
+        }
     }
 
     @Override
     public PacienteDTO getPatient(Long id) {
-        PacienteDTO pacienteDTO = modelMapper.map(iPacienteRepository.findById(id).get(), PacienteDTO.class);
-        return pacienteDTO;
+        if (!iPacienteRepository.existsById(id)) {
+            throw new ResourceNotFound("No encontramos al paciente solicitado");
+        } else {
+            PacienteDTO pacienteDTO = modelMapper.map(iPacienteRepository.findById(id).get(), PacienteDTO.class);
+            return pacienteDTO;
+        }
     }
 
     @Override
@@ -55,7 +64,11 @@ public class PacienteService implements IPacienteService {
 
     @Override
     public String deletePatient(Long id) {
-        iPacienteRepository.deleteById(id);
-        return "El paciente fue eliminado con exito";
+        if (!iPacienteRepository.existsById(id)) {
+            throw new ResourceNotFound("No encontramos al paciente que desea eliminar");
+        } else {
+            iPacienteRepository.deleteById(id);
+            return "El paciente fue eliminado con exito";
+        }
     }
 }
