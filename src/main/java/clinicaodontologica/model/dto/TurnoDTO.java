@@ -3,17 +3,25 @@ package clinicaodontologica.model.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public class TurnoDTO implements Serializable {
 
-    private Long idPaciente, idOdontologo;
+    @NotNull(message = "Ingrese un numero de paciente")
+    @Positive(message = "el numero del paciente debe ser mayor a cero")
+    private Long idPaciente;
+    @NotNull(message = "Ingrese un numero de odontologo")
+    @Positive(message = "el numero del odontologo debe ser mayor a cero")
+    private Long idOdontologo;
     private String pacienteApellido;
     private String odontologoApellido;
 
     @DateTimeFormat
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @NotNull(message = "Debe ingresar una fecha para el turno")
     private LocalDate fecha;
 
     public TurnoDTO() {
