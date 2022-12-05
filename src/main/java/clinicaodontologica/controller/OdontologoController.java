@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,28 +20,28 @@ public class OdontologoController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<OdontologoDTO> getById(@PathVariable Long id){
+    public ResponseEntity<Object> getById(@PathVariable Long id) {
         return new ResponseEntity<>(odontologoService.getDentist(id), HttpStatus.OK);
     }
 
     @GetMapping()
 
-    public ResponseEntity<List<OdontologoDTO>> getAll(){
+    public ResponseEntity<List<OdontologoDTO>> getAll() {
         return new ResponseEntity<>(odontologoService.getAllDentist(), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<String> newDentist(@RequestBody OdontologoDTO odontologoDTO){
+    public ResponseEntity<String> newDentist(@RequestBody @Valid OdontologoDTO odontologoDTO) {
         return new ResponseEntity<>(odontologoService.addNewDentist(odontologoDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<String> modifyDentist(@PathVariable Long id, @RequestBody OdontologoDTO odontologoDTO){
+    public ResponseEntity<String> modifyDentist(@PathVariable Long id, @RequestBody @Valid OdontologoDTO odontologoDTO) {
         return new ResponseEntity<>(odontologoService.modifyDentist(odontologoDTO, id), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteDentist(@PathVariable Long id){
+    public ResponseEntity<String> deleteDentist(@PathVariable Long id) {
         return new ResponseEntity<>(odontologoService.deleteDentist(id), HttpStatus.OK);
     }
 }
