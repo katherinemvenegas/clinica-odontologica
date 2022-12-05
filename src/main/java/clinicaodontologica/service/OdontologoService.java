@@ -23,22 +23,25 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public String addNewDentist(OdontologoDTO odontologoDTO) {
+    public OdontologoDTO addNewDentist(OdontologoDTO odontologoDTO) {
 
         Odontologo odontologo = modelMapper.map(odontologoDTO, Odontologo.class);
         iOdontologoRepository.save(odontologo);
-        return "El odontologo " + odontologo.getApellido() + " se creo con exito";
+        OdontologoDTO dto = modelMapper.map(odontologo, OdontologoDTO.class);
+        return dto;
     }
 
     @Override
-    public String modifyDentist(OdontologoDTO odontologoDTO, Long id) {
+    public OdontologoDTO modifyDentist(OdontologoDTO odontologoDTO, Long id) {
         if (!iOdontologoRepository.existsById(id)) {
             throw new ResourceNotFound("No encontramos al odontologo que desea modificar");
         } else {
-        Odontologo odontologo = modelMapper.map(odontologoDTO, Odontologo.class);
-        odontologo.setId(id);
-        iOdontologoRepository.save(odontologo);
-        return "El odontologo " + odontologo.getApellido() + " se modifico con exito";
+            Odontologo odontologo = modelMapper.map(odontologoDTO, Odontologo.class);
+            odontologo.setId(id);
+            iOdontologoRepository.save(odontologo);
+
+            OdontologoDTO dto = modelMapper.map(odontologo, OdontologoDTO.class);
+            return dto;
         }
     }
 

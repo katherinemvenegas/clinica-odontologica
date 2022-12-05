@@ -20,7 +20,7 @@ public class OdontologoController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Object> getById(@PathVariable Long id) {
+    public ResponseEntity<OdontologoDTO> getById(@PathVariable Long id) {
         return new ResponseEntity<>(odontologoService.getDentist(id), HttpStatus.OK);
     }
 
@@ -31,12 +31,12 @@ public class OdontologoController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> newDentist(@RequestBody @Valid OdontologoDTO odontologoDTO) {
+    public ResponseEntity<OdontologoDTO> newDentist(@RequestBody @Valid OdontologoDTO odontologoDTO) {
         return new ResponseEntity<>(odontologoService.addNewDentist(odontologoDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<String> modifyDentist(@PathVariable Long id, @RequestBody @Valid OdontologoDTO odontologoDTO) {
+    public ResponseEntity<OdontologoDTO> modifyDentist(@PathVariable Long id, @RequestBody @Valid OdontologoDTO odontologoDTO) {
         return new ResponseEntity<>(odontologoService.modifyDentist(odontologoDTO, id), HttpStatus.OK);
     }
 
