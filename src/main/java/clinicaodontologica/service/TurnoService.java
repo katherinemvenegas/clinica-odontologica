@@ -71,8 +71,8 @@ public class TurnoService implements ITurnoService {
             throw new ResourceNotFound("No encontramos el turno solicitado");
         } else {
             TurnoDTO turnoDTO = modelMapper.map(iTurnoRepository.findById(id).get(), TurnoDTO.class);
-            turnoDTO.setPacienteApellido(iTurnoRepository.findById(id).get().getPaciente().getApellido());
-            turnoDTO.setOdontologoApellido(iTurnoRepository.findById(id).get().getOdontologo().getApellido());
+            turnoDTO.setPacienteApellido(iPacienteRepository.findById(turnoDTO.getIdPaciente()).get().getApellido());
+            turnoDTO.setOdontologoApellido(iOdontologoRepository.findById(turnoDTO.getIdOdontologo()).get().getApellido());
             return turnoDTO;
         }
     }
@@ -107,7 +107,6 @@ public class TurnoService implements ITurnoService {
         } else {
             iOdontologoRepository.findById(id);
         }
-        ;
     }
 
 
@@ -123,6 +122,5 @@ public class TurnoService implements ITurnoService {
         if (iTurnoRepository.existsByFecha(fecha) || fecha.isBefore(LocalDate.now())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La fecha solicitada no se encuentra disponible");
         }
-        ;
     }
 }
