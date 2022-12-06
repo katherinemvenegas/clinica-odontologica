@@ -30,13 +30,13 @@ public class PacienteController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> newPatient(@RequestBody @Valid PacienteDTO pacienteDTO){
+    public ResponseEntity<PacienteDTO> newPatient(@RequestBody @Valid PacienteDTO pacienteDTO){
 
         return new ResponseEntity<>(pacienteService.addNewPatient(pacienteDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<String> modifyPatient(@PathVariable Long id, @RequestBody @Valid PacienteDTO pacienteDTO){
+    public ResponseEntity<PacienteDTO> modifyPatient(@PathVariable Long id, @RequestBody @Valid PacienteDTO pacienteDTO){
 
         return new ResponseEntity<>(pacienteService.modifyPatient(pacienteDTO, id), HttpStatus.OK);
     }

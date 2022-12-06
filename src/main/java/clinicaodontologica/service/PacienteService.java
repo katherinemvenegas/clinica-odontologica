@@ -22,22 +22,26 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public String addNewPatient(PacienteDTO pacienteDTO) {
+    public PacienteDTO addNewPatient(PacienteDTO pacienteDTO) {
 
         Paciente paciente = modelMapper.map(pacienteDTO, Paciente.class);
         iPacienteRepository.save(paciente);
-        return "El paciente " + paciente.getApellido() + " se creo con exito";
+
+        PacienteDTO dto = modelMapper.map(paciente, PacienteDTO.class);
+        return dto;
     }
 
     @Override
-    public String modifyPatient(PacienteDTO pacienteDTO, Long id) {
+    public PacienteDTO modifyPatient(PacienteDTO pacienteDTO, Long id) {
         if (!iPacienteRepository.existsById(id)) {
             throw new ResourceNotFound("No encontramos al paciente que desea modificar");
         } else {
             Paciente paciente = modelMapper.map(pacienteDTO, Paciente.class);
             paciente.setId(id);
             iPacienteRepository.save(paciente);
-            return "El paciente " + paciente.getApellido() + " se modifico con exito";
+
+            PacienteDTO dto = modelMapper.map(paciente, PacienteDTO.class);
+            return dto;
         }
     }
 
