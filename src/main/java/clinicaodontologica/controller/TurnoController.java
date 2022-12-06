@@ -30,12 +30,12 @@ public class TurnoController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> newTurn(@RequestBody @Valid TurnoDTO turnoDTO){
+    public ResponseEntity<TurnoDTO> newTurn(@RequestBody @Valid TurnoDTO turnoDTO){
         return new ResponseEntity<>(turnoService.addNewTurn(turnoDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<String> modifyTurn(@PathVariable Long id, @RequestBody @Valid TurnoDTO turnoDTO){
+    public ResponseEntity<TurnoDTO> modifyTurn(@PathVariable Long id, @RequestBody @Valid TurnoDTO turnoDTO){
         return new ResponseEntity<>(turnoService.modifyTurn(turnoDTO, id), HttpStatus.OK);
     }
 

@@ -30,7 +30,7 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public String addNewTurn(TurnoDTO turnoDTO) {
+    public TurnoDTO addNewTurn(TurnoDTO turnoDTO) {
         verifyExistDentist(turnoDTO.getIdOdontologo());
         verifyExistPatient(turnoDTO.getIdPaciente());
         dateAvailable(turnoDTO.getFecha());
@@ -41,11 +41,12 @@ public class TurnoService implements ITurnoService {
         turno.setPaciente(iPacienteRepository.findById(turnoDTO.getIdPaciente()).orElseThrow());
         iTurnoRepository.save(turno);
 
-        return "El turno con fecha " + turno.getFecha() + " se creo con exito";
+        TurnoDTO dto = modelMapper.map(turno, TurnoDTO.class);
+        return dto;
     }
 
     @Override
-    public String modifyTurn(TurnoDTO turnoDTO, Long id) {
+    public TurnoDTO modifyTurn(TurnoDTO turnoDTO, Long id) {
         if (!iTurnoRepository.existsById(id)) {
             throw new ResourceNotFound("No encontramos el turno que desea modificar");
         } else {
@@ -59,7 +60,8 @@ public class TurnoService implements ITurnoService {
             turno.setPaciente(iPacienteRepository.findById(turnoDTO.getIdPaciente()).orElseThrow());
             iTurnoRepository.save(turno);
 
-            return "El turno se modifico con exito";
+            TurnoDTO dto = modelMapper.map(turno, TurnoDTO.class);
+            return dto;
         }
     }
 
