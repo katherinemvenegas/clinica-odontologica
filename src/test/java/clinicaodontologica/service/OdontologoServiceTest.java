@@ -103,4 +103,22 @@ class OdontologoServiceTest {
         //assert
         verify(iOdontologoRepository, times(1)).deleteById(1L);
     }
+
+    @Test
+    @DisplayName("Get dentist by matricula successfully")
+    void getDentistByMatricula() {
+        //arrange
+        Odontologo odontologo = OdontologoFactory.getDentist();
+        OdontologoDTO expected = OdontologoFactory.createOdontologoDTO();
+
+        //act
+        when(iOdontologoRepository.existsByMatricula("ABC123")).thenReturn(true);
+        when(iOdontologoRepository.findByMatricula("ABC123")).thenReturn(odontologo);
+        OdontologoDTO actual = odontologoService.getDentistByMatricula("ABC123");
+
+        //assert
+
+        verify(iOdontologoRepository, times(1)).findByMatricula("ABC123");
+        assertEquals(expected.toString(), actual.toString());
+    }
 }
