@@ -15,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -128,5 +129,21 @@ class TurnoServiceTest {
         turnoService.deleteTurn(1L);
         //assert
         verify(iTurnoRepository, times(1)).deleteById(1L);
+    }
+
+    @Test
+    void getTurnsByDate() {
+        //arrange
+        List<Turno> turnoList = TurnoFactory.getAllTurns();
+        List<TurnoDTO> expected = TurnoFactory.getAllTurnsDTO();
+
+        //act
+        when(iTurnoRepository.findByFecha(LocalDate.of(2022, 12, 12))).thenReturn(turnoList);
+        List<TurnoDTO> actual = turnoService.getTurnsByDate(LocalDate.of(2022, 12, 12));
+
+        //assert
+        verify(iTurnoRepository, times(1)).findByFecha(LocalDate.of(2022, 12, 12));
+        assertEquals(expected.size(), actual.size());
+
     }
 }
