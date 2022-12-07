@@ -56,6 +56,24 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
+    public List<PacienteDTO> getPatientsByNameOrSurName(String name) {
+
+        List<PacienteDTO> dtoList = iPacienteRepository.findByNameOrSurName(name)
+                .stream().map(paciente -> {
+                    PacienteDTO pacienteDTO = modelMapper.map(paciente, PacienteDTO.class);
+                    return pacienteDTO;
+                }).collect(Collectors.toList());
+
+        if (dtoList.size() < 1) {
+            throw new ResourceNotFound("No encontramos al paciente solicitado");
+        } else {
+            return dtoList;
+        }
+
+
+    }
+
+    @Override
     public List<PacienteDTO> getAllPatients() {
         List<PacienteDTO> pacienteDTOList = iPacienteRepository.findAll().
                 stream().map(paciente -> {

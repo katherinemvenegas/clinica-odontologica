@@ -11,6 +11,8 @@ public interface IPacienteService {
 
     PacienteDTO getPatient(Long id);
 
+    List<PacienteDTO> getPatientsByNameOrSurName(String name);
+
     List<PacienteDTO> getAllPatients();
 
     String deletePatient(Long id);
