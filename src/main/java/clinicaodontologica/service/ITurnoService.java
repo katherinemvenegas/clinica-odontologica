@@ -2,6 +2,7 @@ package clinicaodontologica.service;
 
 import clinicaodontologica.model.dto.TurnoDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ITurnoService {
@@ -13,6 +14,8 @@ public interface ITurnoService {
     TurnoDTO getTurn(Long id);
 
     List<TurnoDTO> getAllTurns();
+
+    List<TurnoDTO> getTurnsByDate(LocalDate date);
 
     String deleteTurn(Long id);
 }

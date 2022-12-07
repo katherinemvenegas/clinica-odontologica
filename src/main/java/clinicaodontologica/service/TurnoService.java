@@ -90,6 +90,22 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
+    public List<TurnoDTO> getTurnsByDate(LocalDate date) {
+        List<TurnoDTO> turnoDTOList = iTurnoRepository.findByFecha(date).stream().map(turno -> {
+            TurnoDTO turnoDTO = modelMapper.map(turno, TurnoDTO.class);
+            turnoDTO.setPacienteApellido(turno.getPaciente().getApellido());
+            turnoDTO.setOdontologoApellido(turno.getOdontologo().getApellido());
+
+            return turnoDTO;
+        }).collect(Collectors.toList());
+        if (turnoDTOList.size() < 1) {
+            throw new ResourceNotFound("No encontramos turnos en la fecha indicada");
+        } else {
+            return turnoDTOList;
+        }
+    }
+
+    @Override
     public String deleteTurn(Long id) {
         if (!iTurnoRepository.existsById(id)) {
             throw new ResourceNotFound("No encontramos el turno que desea eliminar");
