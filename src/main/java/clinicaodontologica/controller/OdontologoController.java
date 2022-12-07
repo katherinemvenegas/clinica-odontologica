@@ -24,6 +24,11 @@ public class OdontologoController {
         return new ResponseEntity<>(odontologoService.getDentist(id), HttpStatus.OK);
     }
 
+    @GetMapping("matricula/{matricula}")
+    public ResponseEntity<OdontologoDTO> getByMatricula(@PathVariable String matricula) {
+        return new ResponseEntity<>(odontologoService.getDentistByMatricula(matricula), HttpStatus.OK);
+    }
+
     @GetMapping()
 
     public ResponseEntity<List<OdontologoDTO>> getAll() {
