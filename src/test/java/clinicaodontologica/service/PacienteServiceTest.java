@@ -100,4 +100,19 @@ class PacienteServiceTest {
         //assert
         verify(iPacienteRepository, times(1)).deleteById(any());
     }
+
+    @Test
+    @DisplayName("GetPatients by Name or SurName successfully")
+    void getPatientsByNameOrSurName() {
+        //arrange
+        List<Paciente> pacientes = PacienteFactory.getAllPatients();
+        List<PacienteDTO> expected = PacienteFactory.getAllPatientsDTO();
+        //act
+        when(iPacienteRepository.findByNameOrSurName("Perez")).thenReturn(pacientes);
+        List<PacienteDTO> actual = pacienteService.getPatientsByNameOrSurName("Perez");
+
+        //assert
+        verify(iPacienteRepository, times(1)).findByNameOrSurName("Perez");
+        assertEquals(expected.size(), actual.size());
+    }
 }
