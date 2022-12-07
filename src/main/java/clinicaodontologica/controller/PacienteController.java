@@ -20,29 +20,34 @@ public class PacienteController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<PacienteDTO> getById(@PathVariable Long id){
+    public ResponseEntity<PacienteDTO> getById(@PathVariable Long id) {
         return new ResponseEntity<>(pacienteService.getPatient(id), HttpStatus.OK);
     }
 
+    @GetMapping("nombre/{name}")
+    public ResponseEntity<List<PacienteDTO>> getByNameOrSurname(@PathVariable String name) {
+        return new ResponseEntity<>(pacienteService.getPatientsByNameOrSurName(name), HttpStatus.OK);
+    }
+
     @GetMapping("")
-    public ResponseEntity<List<PacienteDTO>> getAll(){
+    public ResponseEntity<List<PacienteDTO>> getAll() {
         return new ResponseEntity<>(pacienteService.getAllPatients(), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<PacienteDTO> newPatient(@RequestBody @Valid PacienteDTO pacienteDTO){
+    public ResponseEntity<PacienteDTO> newPatient(@RequestBody @Valid PacienteDTO pacienteDTO) {
 
         return new ResponseEntity<>(pacienteService.addNewPatient(pacienteDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<PacienteDTO> modifyPatient(@PathVariable Long id, @RequestBody @Valid PacienteDTO pacienteDTO){
+    public ResponseEntity<PacienteDTO> modifyPatient(@PathVariable Long id, @RequestBody @Valid PacienteDTO pacienteDTO) {
 
         return new ResponseEntity<>(pacienteService.modifyPatient(pacienteDTO, id), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deletePatient(@PathVariable Long id){
+    public ResponseEntity<String> deletePatient(@PathVariable Long id) {
 
         return new ResponseEntity<>(pacienteService.deletePatient(id), HttpStatus.OK);
     }
