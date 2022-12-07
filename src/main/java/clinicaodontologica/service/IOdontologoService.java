@@ -11,6 +11,8 @@ public interface IOdontologoService {
 
     OdontologoDTO getDentist(Long id);
 
+    OdontologoDTO getDentistByMatricula(String matricula);
+
     List<OdontologoDTO> getAllDentist();
 
     String deleteDentist(Long id);

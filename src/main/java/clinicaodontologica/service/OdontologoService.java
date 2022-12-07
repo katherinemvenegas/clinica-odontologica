@@ -56,6 +56,16 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
+    public OdontologoDTO getDentistByMatricula(String matricula) {
+        if(!iOdontologoRepository.existsByMatricula(matricula)){
+            throw new ResourceNotFound("No encontramos al odontologo solicitado");
+        }else{
+            OdontologoDTO odontologoDTO = modelMapper.map(iOdontologoRepository.findByMatricula(matricula), OdontologoDTO.class);
+            return odontologoDTO;
+        }
+    }
+
+    @Override
     public List<OdontologoDTO> getAllDentist() {
         List<OdontologoDTO> odontologoDTOList = iOdontologoRepository.findAll().stream().map(
                         odontologo -> modelMapper.map(odontologo, OdontologoDTO.class))
