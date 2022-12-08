@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @Entity
@@ -24,14 +25,20 @@ public class Turno {
     @Column
     private LocalDate fecha;
 
+    @Column
+    @DateTimeFormat
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    private LocalTime hora;
+
     public Turno() {
     }
 
-    public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDate fecha) {
+    public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDate fecha, LocalTime hora) {
         this.id = id;
         this.paciente = paciente;
         this.odontologo = odontologo;
         this.fecha = fecha;
+        this.hora = hora;
     }
 
     public Long getId() {
@@ -65,6 +72,14 @@ public class Turno {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
     }
 
     @Override
