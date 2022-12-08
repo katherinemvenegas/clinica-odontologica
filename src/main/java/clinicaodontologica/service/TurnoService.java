@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,10 +34,11 @@ public class TurnoService implements ITurnoService {
     public TurnoDTO addNewTurn(TurnoDTO turnoDTO) {
         verifyExistDentist(turnoDTO.getIdOdontologo());
         verifyExistPatient(turnoDTO.getIdPaciente());
-        dateAvailable(turnoDTO.getFecha());
+        dateOfTurnAvailableByDentist(turnoDTO.getIdOdontologo(), turnoDTO.getFecha(), turnoDTO.getHora());
 
         Turno turno = new Turno();
         turno.setFecha(turnoDTO.getFecha());
+        turno.setHora(turnoDTO.getHora());
         turno.setOdontologo(iOdontologoRepository.findById(turnoDTO.getIdOdontologo()).orElseThrow());
         turno.setPaciente(iPacienteRepository.findById(turnoDTO.getIdPaciente()).orElseThrow());
         iTurnoRepository.save(turno);
@@ -52,10 +54,11 @@ public class TurnoService implements ITurnoService {
         } else {
             verifyExistDentist(turnoDTO.getIdOdontologo());
             verifyExistPatient(turnoDTO.getIdPaciente());
-            dateAvailable(turnoDTO.getFecha());
+            dateOfTurnAvailableByDentist(turnoDTO.getIdOdontologo(), turnoDTO.getFecha(), turnoDTO.getHora());
             Turno turno = new Turno();
             turno.setId(id);
             turno.setFecha(turnoDTO.getFecha());
+            turno.setHora(turnoDTO.getHora());
             turno.setOdontologo(iOdontologoRepository.findById(turnoDTO.getIdOdontologo()).orElseThrow());
             turno.setPaciente(iPacienteRepository.findById(turnoDTO.getIdPaciente()).orElseThrow());
             iTurnoRepository.save(turno);
@@ -91,7 +94,7 @@ public class TurnoService implements ITurnoService {
 
     @Override
     public List<TurnoDTO> getTurnsByDate(LocalDate date) {
-        List<TurnoDTO> turnoDTOList = iTurnoRepository.findByFecha(date).stream().map(turno -> {
+        List<TurnoDTO> turnoDTOList = iTurnoRepository.findByFechaOrderByOdontologoAndHora(date).stream().map(turno -> {
             TurnoDTO turnoDTO = modelMapper.map(turno, TurnoDTO.class);
             turnoDTO.setPacienteApellido(turno.getPaciente().getApellido());
             turnoDTO.setOdontologoApellido(turno.getOdontologo().getApellido());
@@ -134,8 +137,8 @@ public class TurnoService implements ITurnoService {
         }
     }
 
-    private void dateAvailable(LocalDate fecha) {
-        if (iTurnoRepository.existsByFecha(fecha) || fecha.isBefore(LocalDate.now())) {
+    private void dateOfTurnAvailableByDentist(Long idOdontologo, LocalDate fecha, LocalTime hora) {
+        if (iTurnoRepository.existByOdontologoAndFechaAndHora(idOdontologo, fecha, hora) != null || fecha.isBefore(LocalDate.now())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La fecha solicitada no se encuentra disponible");
         }
     }
