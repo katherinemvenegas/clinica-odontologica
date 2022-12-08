@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class TurnoDTO implements Serializable {
 
@@ -24,13 +25,19 @@ public class TurnoDTO implements Serializable {
     @NotNull(message = "Debe ingresar una fecha para el turno")
     private LocalDate fecha;
 
+    @DateTimeFormat
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    @NotNull(message = "Debe ingresar una hora para el turno")
+    private LocalTime hora;
+
     public TurnoDTO() {
     }
 
-    public TurnoDTO(Long idPaciente, Long idOdontologo, LocalDate fecha) {
+    public TurnoDTO(Long idPaciente, Long idOdontologo, LocalDate fecha, LocalTime hora) {
         this.idPaciente = idPaciente;
         this.idOdontologo = idOdontologo;
         this.fecha = fecha;
+        this.hora = hora;
     }
 
     public Long getIdPaciente() {
@@ -71,6 +78,14 @@ public class TurnoDTO implements Serializable {
 
     public void setOdontologoApellido(String odontologoApellido) {
         this.odontologoApellido = odontologoApellido;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
     }
 
     @Override
