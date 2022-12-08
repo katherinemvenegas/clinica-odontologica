@@ -62,7 +62,6 @@ class TurnoServiceTest {
     @Test
     @DisplayName("Update turn successfully")
     void modifyTurn() {
-
         //arrange
         TurnoDTO expected = TurnoFactory.createTurnoDTO();
 
@@ -132,17 +131,18 @@ class TurnoServiceTest {
     }
 
     @Test
+    @DisplayName("Get tuns by date successfully")
     void getTurnsByDate() {
         //arrange
         List<Turno> turnoList = TurnoFactory.getAllTurns();
         List<TurnoDTO> expected = TurnoFactory.getAllTurnsDTO();
 
         //act
-        when(iTurnoRepository.findByFecha(LocalDate.of(2022, 12, 12))).thenReturn(turnoList);
+        when(iTurnoRepository.findByFechaOrderByOdontologoAndHora(LocalDate.of(2022, 12, 12))).thenReturn(turnoList);
         List<TurnoDTO> actual = turnoService.getTurnsByDate(LocalDate.of(2022, 12, 12));
 
         //assert
-        verify(iTurnoRepository, times(1)).findByFecha(LocalDate.of(2022, 12, 12));
+        verify(iTurnoRepository, times(1)).findByFechaOrderByOdontologoAndHora(LocalDate.of(2022, 12, 12));
         assertEquals(expected.size(), actual.size());
 
     }
