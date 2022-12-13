@@ -13,13 +13,13 @@ import java.util.List;
 public class TurnoFactory {
 
     public static TurnoDTO createTurnoDTO() {
-        return new TurnoDTO(1L, 1L, LocalDate.of(2022, 12, 12), LocalTime.of(12, 30));
+        return new TurnoDTO(1L, 1L, LocalDate.of(2022, 12, 31), LocalTime.of(12, 30));
     }
 
     public static Turno getTurn() {
         Paciente paciente = PacienteFactory.getPatient();
         Odontologo odontologo = OdontologoFactory.getDentist();
-        return new Turno(1L, paciente, odontologo, LocalDate.of(2022, 12, 12), LocalTime.of(12, 30));
+        return new Turno(1L, paciente, odontologo, LocalDate.of(2022, 12, 31), LocalTime.of(12, 30));
     }
 
     public static List<Turno> getAllTurns() {
