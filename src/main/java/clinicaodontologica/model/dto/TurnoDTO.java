@@ -1,6 +1,9 @@
 package clinicaodontologica.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -9,6 +12,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TurnoDTO implements Serializable {
 
     @NotNull(message = "Ingrese un numero de paciente")
@@ -29,71 +35,4 @@ public class TurnoDTO implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     @NotNull(message = "Debe ingresar una hora para el turno")
     private LocalTime hora;
-
-    public TurnoDTO() {
-    }
-
-    public TurnoDTO(Long idPaciente, Long idOdontologo, LocalDate fecha, LocalTime hora) {
-        this.idPaciente = idPaciente;
-        this.idOdontologo = idOdontologo;
-        this.fecha = fecha;
-        this.hora = hora;
-    }
-
-    public Long getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(Long idPaciente) {
-        this.idPaciente = idPaciente;
-    }
-
-    public Long getIdOdontologo() {
-        return idOdontologo;
-    }
-
-    public void setIdOdontologo(Long idOdontologo) {
-        this.idOdontologo = idOdontologo;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getPacienteApellido() {
-        return pacienteApellido;
-    }
-
-    public void setPacienteApellido(String pacienteApellido) {
-        this.pacienteApellido = pacienteApellido;
-    }
-
-    public String getOdontologoApellido() {
-        return odontologoApellido;
-    }
-
-    public void setOdontologoApellido(String odontologoApellido) {
-        this.odontologoApellido = odontologoApellido;
-    }
-
-    public LocalTime getHora() {
-        return hora;
-    }
-
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
-    }
-
-    @Override
-    public String toString() {
-        return "TurnoDTO{" +
-                "id paciente=" + idPaciente +
-                ", id odontologo=" + idOdontologo +
-                ", fecha=" + fecha +
-                '}';
-    }
 }
