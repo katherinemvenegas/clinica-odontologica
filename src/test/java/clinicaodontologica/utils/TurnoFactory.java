@@ -13,7 +13,7 @@ import java.util.List;
 public class TurnoFactory {
 
     public static TurnoDTO createTurnoDTO() {
-        return new TurnoDTO(1L, 1L, LocalDate.of(2022, 12, 31), LocalTime.of(12, 30));
+        return new TurnoDTO(1L, 1L,"Perez", "Gonzalez", LocalDate.of(2022, 12, 31), LocalTime.of(12, 30));
     }
 
     public static Turno getTurn() {

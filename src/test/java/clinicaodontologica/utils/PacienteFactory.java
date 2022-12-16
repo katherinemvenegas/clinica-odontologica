@@ -7,6 +7,7 @@ import clinicaodontologica.persistence.entities.Paciente;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class PacienteFactory {
@@ -21,7 +22,7 @@ public class PacienteFactory {
     public static Paciente getPatient() {
         return new Paciente(1L, "Perez", "Maria", "prueba@email.com", 12212475L,
                 LocalDate.of(2022, 12, 05),
-                new Domicilio(1L, "monroe", 12, "CABA", "Buenos Aires"));
+                new Domicilio(1L, "monroe", 12, "CABA", "Buenos Aires"), new HashSet<>());
 
     }
 
@@ -38,7 +39,7 @@ public class PacienteFactory {
         List<Paciente> pacienteList = new ArrayList<>();
         Paciente paciente = new Paciente(1L, "Perez", "Maria", "prueba@email.com", 12212475L,
                 LocalDate.of(2022, 12, 05),
-                new Domicilio(1L, "monroe", 12, "CABA", "Buenos Aires"));
+                new Domicilio(1L, "monroe", 12, "CABA", "Buenos Aires"), new HashSet<>());
         pacienteList.add(paciente);
         return pacienteList;
     }

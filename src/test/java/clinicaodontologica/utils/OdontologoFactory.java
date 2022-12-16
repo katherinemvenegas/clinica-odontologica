@@ -4,6 +4,7 @@ import clinicaodontologica.model.dto.OdontologoDTO;
 import clinicaodontologica.persistence.entities.Odontologo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class OdontologoFactory {
@@ -13,12 +14,12 @@ public class OdontologoFactory {
     }
 
     public static Odontologo getDentist() {
-        return new Odontologo(1L, "ABC123", "Maria", "Gonzalez");
+        return new Odontologo(1L, "ABC123", "Maria", "Gonzalez", new HashSet<>());
     }
 
     public static List<Odontologo> getAllDentist() {
         List<Odontologo> odontologoList = new ArrayList<>();
-        Odontologo odontologo = new Odontologo(1L, "ABC123", "Maria", "Gonzalez");
+        Odontologo odontologo = new Odontologo(1L, "ABC123", "Maria", "Gonzalez", new HashSet<>());
         odontologoList.add(odontologo);
         return odontologoList;
     }
