@@ -1,6 +1,9 @@
 package clinicaodontologica.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,11 +31,13 @@ public class TurnoDTO implements Serializable {
 
     @DateTimeFormat
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonSerialize(using = LocalDateSerializer.class)
     @NotNull(message = "Debe ingresar una fecha para el turno")
     private LocalDate fecha;
 
     @DateTimeFormat
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    @JsonSerialize(using = LocalTimeSerializer.class)
     @NotNull(message = "Debe ingresar una hora para el turno")
     private LocalTime hora;
 }
