@@ -36,7 +36,7 @@ class PacienteControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk()).andReturn();
 
-        assertEquals(result.getResponse().getStatus(), 200);
+        assertEquals(200, result.getResponse().getStatus());
 
     }
 
@@ -49,7 +49,7 @@ class PacienteControllerTest {
                 .andExpect(status().isNotFound())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").value("No encontramos al paciente solicitado")).andReturn();
 
-        assertEquals(result.getResponse().getStatus(), 404);
+        assertEquals(404, result.getResponse().getStatus());
     }
 
     @Test
@@ -60,7 +60,7 @@ class PacienteControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk()).andReturn();
 
-        assertEquals(result.getResponse().getStatus(), 200);
+        assertEquals(200, result.getResponse().getStatus());
     }
 
     @Test
@@ -106,7 +106,7 @@ class PacienteControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json")).andReturn();
 
-        assertEquals(result.getResponse().getStatus(), 200);
+        assertEquals(200, result.getResponse().getStatus());
         assertEquals(payloadJson, result.getResponse().getContentAsString());
     }
 
@@ -119,7 +119,7 @@ class PacienteControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk()).andReturn();
 
-        assertEquals(result.getResponse().getStatus(), 200);
+        assertEquals(200, result.getResponse().getStatus());
     }
 
 }
