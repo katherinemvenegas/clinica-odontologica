@@ -57,4 +57,6 @@ En el siguiente link se puede observar el detalle de los endpoints: http://local
 
 * Mockito
 
-* Swagger 
+* Swagger
+
+* JWT 
