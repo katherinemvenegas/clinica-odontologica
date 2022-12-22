@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM maven:3.8.6-openjdk11
 
 ARG JAR_FILE=./target/demo-0.0.1-SNAPSHOT.jar
 
