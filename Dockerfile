@@ -4,7 +4,7 @@ WORKDIR /home/app
 
 COPY src ./src
 
-COPY pomp.xml .
+COPY pom.xml .
 
 ENTRYPOINT ["java", "-jar", "./target/demo-0.0.1-SNAPSHOT.jar"]
 
