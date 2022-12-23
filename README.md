@@ -8,6 +8,8 @@
 
 * [Funcionalidades de la aplicación](#Funcionalidades-de-la-aplicación)
 
+* [Como ejecutar el proyecto?](#Como-ejecutar-el-proyecto?)
+
 * [Documentación](#Documentación)
 
 * [Tecnologías utilizadas](#Tecnologías-utilizadas)
@@ -38,6 +40,21 @@ El proyecto se encuentra en desarrollo :wrench:
 
 - `Agendar turno`: Se puede agendar turno según disponiblidad del odontólogo.
 - `Mostrar turnos por fecha`: Muestra los turnos por fecha, ordenados por odontologo y hora de atención.
+
+## Como ejecutar el proyecto?
+
+### Con docker :whale:
+
+- `Pre requisito`: Tener instalado docker.
+- `Solo necesitas ejecutar el siguiente comando`: docker run -p 8080:8080 katherinemvenegas/clinica-odontologica
+
+### Con IDE :computer:
+
+- `Pre requisitos`: Tener instalado Git y un IDE.
+- `Pasos a seguir`: Clonar el proyecto, buscar el pom y abrirlo con el IDE. Por último, seleccionar Run.
+
+
+*Una vez levantado el proyecto, ya podemos visualizar sus funcionalidades en el link que figura en "Documentación".*
 
 ## Documentación
 
