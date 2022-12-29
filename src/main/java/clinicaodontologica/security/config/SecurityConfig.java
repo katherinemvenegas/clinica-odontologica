@@ -18,11 +18,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private AuthenticationService authenticationService;
-    private BCryptPasswordEncoder encoder;
-    private JwtRequestFilter jwtRequestFilter;
+    private final AuthenticationService authenticationService;
+    private final BCryptPasswordEncoder encoder;
+    private final JwtRequestFilter jwtRequestFilter;
 
-    private JwtAuthentication jwtAuthentication;
+    private final JwtAuthentication jwtAuthentication;
 
     public SecurityConfig(AuthenticationService authenticationService, BCryptPasswordEncoder encoder, JwtRequestFilter jwtRequestFilter, JwtAuthentication jwtAuthentication) {
         this.authenticationService = authenticationService;
@@ -33,14 +33,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        final String ADMIN = "ADMIN";
+        final String DENTIST = "DENTIST";
+        final String PATIENT = "PATIENT";
         http.csrf().disable().authorizeRequests().
                 antMatchers("/v3/api-docs/**").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/session/v1/signup").permitAll()
                 .antMatchers("/session/v1/login").permitAll()
-                .antMatchers("/odontologos/v1/**").hasAnyRole("ADMIN", "DENTIST")
-                .antMatchers("/pacientes/v1/**").hasAnyRole("ADMIN", "PATIENT")
-                .antMatchers("/turnos/v1/**").hasAnyRole("ADMIN", "PATIENT")
+                .antMatchers("/odontologos/v1/**").hasAnyRole(ADMIN, DENTIST)
+                .antMatchers("/pacientes/v1/**").hasAnyRole(ADMIN, PATIENT)
+                .antMatchers("/turnos/v1/**").hasAnyRole(ADMIN, PATIENT)
                 .anyRequest().authenticated()
                 .and().httpBasic()
                 .and().exceptionHandling()
