@@ -1,6 +1,5 @@
 package clinicaodontologica.security.config;
 
-import clinicaodontologica.security.service.AuthenticationService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,11 +24,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     private JwtUtil jwtUtil;
 
-    private AuthenticationService authenticationService;
-
-    public JwtRequestFilter(JwtUtil jwtUtil, AuthenticationService authenticationService) {
+    public JwtRequestFilter(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
-        this.authenticationService = authenticationService;
     }
 
     @Override
