@@ -18,11 +18,7 @@ import java.io.IOException;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
-
-    private final String HEADER = "Authorization";
-    private final String PREFIX = "Bearer ";
-
-    private JwtUtil jwtUtil;
+    private final JwtUtil jwtUtil;
 
     public JwtRequestFilter(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
@@ -52,6 +48,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     }
 
     private String extractJwtFromRequest(HttpServletRequest request) {
+        final String HEADER = "Authorization";
+        final String PREFIX = "Bearer ";
         String bearerToken = request.getHeader(HEADER);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(PREFIX)) {
             return bearerToken.replace(PREFIX, "");
