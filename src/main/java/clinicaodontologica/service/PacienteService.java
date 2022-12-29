@@ -64,7 +64,7 @@ public class PacienteService implements IPacienteService {
                     return pacienteDTO;
                 }).collect(Collectors.toList());
 
-        if (dtoList.size() < 1) {
+        if (dtoList.isEmpty()) {
             throw new ResourceNotFound("No encontramos al paciente solicitado");
         } else {
             return dtoList;

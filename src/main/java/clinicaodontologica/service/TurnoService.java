@@ -101,7 +101,7 @@ public class TurnoService implements ITurnoService {
 
             return turnoDTO;
         }).collect(Collectors.toList());
-        if (turnoDTOList.size() < 1) {
+        if (turnoDTOList.isEmpty()) {
             throw new ResourceNotFound("No encontramos turnos en la fecha indicada");
         } else {
             return turnoDTOList;
