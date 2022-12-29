@@ -1,6 +1,5 @@
 package clinicaodontologica.security.persistence.entities;
 
-import clinicaodontologica.security.persistence.entities.RolName;
 import lombok.*;
 
 import javax.persistence.*;
