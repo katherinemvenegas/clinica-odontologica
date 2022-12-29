@@ -3,6 +3,7 @@ package clinicaodontologica.persistence.entities;
 import lombok.*;
 
 import javax.persistence.*;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -20,5 +21,7 @@ public class Domicilio {
     @Column
     private int numero;
     @Column
-    private String localidad, provincia;
+    private String localidad;
+    @Column
+    private String provincia;
 }
