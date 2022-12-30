@@ -1,7 +1,51 @@
-clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo que desea eliminar
-clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo que desea eliminar
-2022-12-01
-2022-12-01- 0 [http-nio-8080-exec-2] ERROR clinicaodontologica.exceptions.ExceptionConfig  - clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo que desea eliminar
-2022-12-01 clinicaodontologica.exceptions.ExceptionConfig  - clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo que desea eliminar
-2022-12-01  - clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo que desea eliminar
-2022-12-01 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo que desea eliminar
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al paciente solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos turnos en la fecha indicada
+2022-12-29 org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "No encontramos el odontologo solicitado"
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno que desea modificar
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno que desea eliminar
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos turnos en la fecha indicada
+2022-12-29 org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "La fecha solicitada no se encuentra disponible"
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al paciente solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos turnos en la fecha indicada
+2022-12-29 org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "No encontramos el odontologo solicitado"
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno que desea modificar
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno que desea eliminar
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al paciente solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos turnos en la fecha indicada
+2022-12-29 org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "No encontramos el odontologo solicitado"
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno que desea modificar
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno que desea eliminar
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al paciente solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al paciente solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al paciente solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al paciente que desea modificar
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al paciente solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo solicitado
+2022-12-29 [El email debe tener el siguiente formato: mail@mail.com]
+2022-12-29 [El email debe tener el siguiente formato: mail@mail.com]
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al paciente solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos turnos en la fecha indicada
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al paciente solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos turnos en la fecha indicada
+2022-12-29 org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "No encontramos el odontologo solicitado"
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno que desea modificar
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno que desea eliminar
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al paciente solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos al odontologo solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos turnos en la fecha indicada
+2022-12-29 org.springframework.web.server.ResponseStatusException: 400 BAD_REQUEST "No encontramos el odontologo solicitado"
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno solicitado
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno que desea modificar
+2022-12-29 clinicaodontologica.exceptions.ResourceNotFound: No encontramos el turno que desea eliminar
