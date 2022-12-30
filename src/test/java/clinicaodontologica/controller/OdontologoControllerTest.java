@@ -14,8 +14,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -86,6 +88,31 @@ class OdontologoControllerTest {
                 .andReturn();
 
         assertEquals(payloadJson, result.getResponse().getContentAsString());
+    }
+
+    @Test
+    @DisplayName("Create dentist fail")
+    @Order(2)
+    void newDentistFail() throws Exception {
+        OdontologoDTO dto = OdontologoFactory.createOdontologoDTOFail();
+
+        ObjectWriter writer = new ObjectMapper()
+                .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
+                .writer();
+
+        String payloadJson = writer.writeValueAsString(dto);
+
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/odontologos/v1/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(payloadJson))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andReturn();
+
+
+        assertEquals("[\"La matricula debe tener 6 caracteres como minimo\"]", result.getResponse().getContentAsString().toString());
     }
 
     @Test
