@@ -12,6 +12,8 @@
 
 * [Documentación](#Documentación)
 
+* [Sonarqube](#Sonarqube)
+
 * [Tecnologías utilizadas](#Tecnologías-utilizadas)
 
 ## Descripción del proyecto
@@ -53,12 +55,18 @@ El proyecto se encuentra en desarrollo :wrench:
 - `Pre requisitos`: Tener instalado Git y un IDE.
 - `Pasos a seguir`: Clonar el proyecto, buscar el pom y abrirlo con el IDE. Por último, seleccionar Run.
 
-
 *Una vez levantado el proyecto, ya podemos visualizar sus funcionalidades en el link que figura en "Documentación".*
 
 ## Documentación
 
 En el siguiente link se puede observar el detalle de los endpoints: http://localhost:8080/swagger-ui/index.html
+
+## Sonarqube
+
+- `Pre requisitos`: Tener instalado docker.
+- `Pasos a seguir`: docker-compose up e ingresar a http://localhost:9000
+- `En caso de error de memoria`: wsl -d docker-desktop sysctl -w vm.max_map_count=262144 y repetir el comando para
+  levantar el contenedor.
 
 ## Tecnologías utilizadas
 
@@ -79,3 +87,5 @@ En el siguiente link se puede observar el detalle de los endpoints: http://local
 * JWT
 
 * Docker
+
+* Sonarqube
