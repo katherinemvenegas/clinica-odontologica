@@ -59,12 +59,15 @@ El proyecto se encuentra en desarrollo :wrench:
 
 ## Documentación
 
-En el siguiente link se puede observar el detalle de los endpoints: http://localhost:8080/swagger-ui/index.html
+En el siguiente link se puede observar el detalle de los endpoints: <a href="http://localhost:8080/swagger-ui/index.html" target="_blank">swagger</a>
+- Primero ejecutar el endpoint signup
+- Luego el endpoint login y agregar el jwt obtenido en authorize
+- Ya podemos utilizar el resto de los endpoint dependiendo el rol asignado en signup
 
 ## Sonarqube
 
 - `Pre requisitos`: Tener instalado docker.
-- `Pasos a seguir`: docker-compose up e ingresar a http://localhost:9000
+- `Pasos a seguir`: docker-compose up e ingresar a <a href="http://localhost:9000" target="_blank">reporte sonarqube</a>
 - `En caso de error de memoria`: wsl -d docker-desktop sysctl -w vm.max_map_count=262144 y repetir el comando para
   levantar el contenedor.
 
