@@ -13,6 +13,10 @@ public class OdontologoFactory {
         return new OdontologoDTO("ABC123", "Maria", "Gonzalez");
     }
 
+    public static OdontologoDTO createOdontologoDTOFail() {
+        return new OdontologoDTO("ABC1", "Maria", "Gonzalez");
+    }
+
     public static Odontologo getDentist() {
         return new Odontologo(1L, "ABC123", "Maria", "Gonzalez", new HashSet<>());
     }
